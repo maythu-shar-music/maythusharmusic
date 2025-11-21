@@ -5,7 +5,7 @@
 </h2>
 
 <p align="center">
-  <img src="https://files.catbox.moe/3ch25z.jpg">
+  <img src="https://files.catbox.moe/0s2ipo.jpg">
 </p>
 
 <p align="center">
@@ -21,7 +21,7 @@
 <img src="https://readme-typing-svg.herokuapp.com?color=FF0000&width=420&lines=💬𝙳𝙴𝙿𝙻𝙾𝚈+𝙾𝙽+𝙷𝙴𝚁𝙾𝙺𝚄💭;🗨️+𝙽𝙾+𝙷𝙴𝚁𝙾𝙺𝚄+𝙱𝙰𝙽+𝙸𝚂𝚂𝚄𝙴+𝙰𝙻𝚂𝙾+𝚅𝙿𝚂+𝙳𝙴𝙿𝙻𝙾𝚈+🤍+𝙿𝚁𝙴𝚂𝙴𝙽𝚃;🤍+𝙿𝙾𝚆𝙴𝚁𝙳+𝙱𝚈+𝗦𝗔𝗦𝗨𝗞𝗘+𝗨𝗖𝗛𝗜𝗛𝗔🔥">
 
 <p align="center">
-  <img src="https://files.catbox.moe/3ch25z.jpg">
+  <img src="https://files.catbox.moe/0s2ipo.jpg">
 </p>
 
 <h3 align="center">
