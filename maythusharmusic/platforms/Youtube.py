@@ -21,6 +21,7 @@ from pymongo import MongoClient
 import aiohttp
 import config
 import traceback # <--- traceback ကို import လုပ်ထားကြောင်း သေချာပါစေ
+from maythusharmusic import LOGGER
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
