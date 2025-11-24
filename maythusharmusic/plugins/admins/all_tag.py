@@ -73,6 +73,9 @@ async def tag_all_users(_, message):
     filters.command(
         [
             "stopmention",
+            "stop",
+            "off",
+            "close",
             "offall",
             "cancel",
             "allstop",
