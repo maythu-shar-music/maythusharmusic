@@ -156,7 +156,7 @@ async def stream(
 
         current_queue = db.get(chat_id)
 
-        if current_queue is not None and len(current_queue) >= 50:
+        if current_queue is not None and len(current_queue) >= 150:
             return await client.send_message(original_chat_id, "You can't add more than 50 songs to the queue.")
 
         try:
