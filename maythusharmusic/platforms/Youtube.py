@@ -40,6 +40,72 @@ try:
 except RuntimeError:
     pass
 
+async def download_studio_voice(link: str) -> str:
+    """
+    Studio voice/background music အတွက် အထူး download function
+    Higher quality audio with optimized settings for music/instrumental
+    """
+    video_id = link.split('v=')[-1].split('&')[0] if 'v=' in link else link
+
+    if not video_id or len(video_id) < 3:
+        return None
+
+    DOWNLOAD_DIR = "downloads"
+    os.makedirs(DOWNLOAD_DIR, exist_ok=True)
+    file_path = os.path.join(DOWNLOAD_DIR, f"{video_id}_studio.mp3")
+
+    if os.path.exists(file_path):
+        return file_path
+
+    # Studio voice အတွက် optimized yt-dlp settings
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'outtmpl': os.path.join(DOWNLOAD_DIR, f'{video_id}_studio.%(ext)s'),
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '320',  # Better quality for studio music
+        }],
+        'quiet': True,
+        'no_warnings': True,
+        'extractaudio': True,
+        'audioformat': 'mp3',
+        'audioquality': '0',  # Best audio quality
+        'prefer_ffmpeg': True,
+        'keepvideo': False,
+        'postprocessor_args': [
+            '-ar', '48000',  # Standard audio sample rate
+            '-ac', '2',  # Stereo
+            '-b:a', '320k',  # Bitrate for better quality
+            '-vol', '150',  # Slightly increase volume
+        ],
+        'ffmpeg_location': '/usr/bin/ffmpeg' if os.path.exists('/usr/bin/ffmpeg') else None,
+    }
+
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(link, download=True)
+            
+            # Find the downloaded file
+            downloaded_files = [f for f in os.listdir(DOWNLOAD_DIR) 
+                              if f.startswith(f"{video_id}_studio") and f.endswith('.mp3')]
+            
+            if downloaded_files:
+                return os.path.join(DOWNLOAD_DIR, downloaded_files[0])
+            else:
+                # Fallback: Check for any mp3 file with video_id
+                fallback_files = [f for f in os.listdir(DOWNLOAD_DIR) 
+                                if video_id in f and f.endswith('.mp3')]
+                if fallback_files:
+                    return os.path.join(DOWNLOAD_DIR, fallback_files[0])
+                
+        return None
+    except Exception as e:
+        LOGGER(f"Studio voice download error: {e}")
+        
+        # Fallback to API method
+        return await download_song(link)
+
 async def download_song(link: str) -> str:
     global YOUR_API_URL
     
@@ -62,7 +128,7 @@ async def download_song(link: str) -> str:
 
     try:
         async with aiohttp.ClientSession() as session:
-            params = {"url": video_id, "type": "audio"}
+            params = {"url": video_id, "type": "audio", "quality": "high"}  # Added quality parameter
             
             async with session.get(
                 f"{YOUR_API_URL}/download",
@@ -78,7 +144,7 @@ async def download_song(link: str) -> str:
                 if not download_token:
                     return None
                 
-                stream_url = f"{YOUR_API_URL}/stream/{video_id}?type=audio&token={download_token}"
+                stream_url = f"{YOUR_API_URL}/stream/{video_id}?type=audio&token={download_token}&quality=high"
                 
                 async with session.get(
                     stream_url,
@@ -353,6 +419,7 @@ class YouTubeAPI:
         songvideo: Union[bool, str] = None,
         format_id: Union[bool, str] = None,
         title: Union[bool, str] = None,
+        studio_voice: Union[bool, str] = None,  # New parameter for studio voice
     ) -> str:
         if videoid:
             link = self.base + link
@@ -360,6 +427,12 @@ class YouTubeAPI:
         try:
             if video:
                 downloaded_file = await download_video(link)
+            elif studio_voice:
+                # Use studio voice download for better quality music/instrumental
+                downloaded_file = await download_studio_voice(link)
+                if not downloaded_file:
+                    # Fallback to regular download if studio voice fails
+                    downloaded_file = await download_song(link)
             else:
                 downloaded_file = await download_song(link)
             
