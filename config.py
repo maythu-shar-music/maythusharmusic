@@ -37,7 +37,7 @@ CLONE_DB_URI = getenv("CLONE_DB_URI", "mongodb+srv://wanglinmongodb:wanglin@rene
 
 CLONE_ENABLED = getenv("CLONE_ENABLED", "True").lower() == "true"
 
-DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 900))
+DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 1500))
 
 # Chat id of a group for logging bot's activities
 LOGGER_ID = int(getenv("LOGGER_ID", None))
@@ -60,10 +60,10 @@ GIT_TOKEN = getenv(
     "GIT_TOKEN", None
 )  # Fill this variable if your upstream repository is private
 
-SUPPORT_CHANNEL_LINK = getenv("SUPPORT_CHANNEL_LINK", "@everythingreset")
+SUPPORT_CHANNEL_LINK = getenv("SUPPORT_CHANNEL_LINK", "@wanglingameshop)
 SUPPORT_CHAT_LINK = getenv("SUPPORT_CHAT_LINK", "@iwillsgoforwardsalone")
 
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/everythingreset")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/wanglingameshop")
 SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/iwillsgoforwardsalone")
 
 # Set this to True if you want the assistant to automatically leave chats after an interval
