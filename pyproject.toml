@@ -43,7 +43,7 @@ dependencies = [
     "telegraph==2.2.0",
     "yt-dlp[default]>=2026.2.17.233631.dev0",
     "lexica-api==1.4.7",
-    "httpx==0.25.2",
+    "httpx==0.28.1",
     "lyricsgenius",
     "spotipy",
     "youtube_search",
