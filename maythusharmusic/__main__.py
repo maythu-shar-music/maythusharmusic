@@ -6,7 +6,7 @@ from pytgcalls.exceptions import NoActiveGroupCall
 
 import config
 from maythusharmusic import LOGGER, app, userbot
-from maythusharmusic.core.call import Hotty
+from maythusharmusic.core.call import pisces
 from maythusharmusic.misc import sudo
 from maythusharmusic.plugins import ALL_MODULES
 from maythusharmusic.utils.database import get_banned_users, get_gbanned
@@ -38,9 +38,9 @@ async def init():
         importlib.import_module("maythusharmusic.plugins" + all_module)
     LOGGER("maythusharmusic.plugins").info("Successfully Imported Modules...")
     await userbot.start()
-    await Hotty.start()
+    await pisces.start()
     try:
-        await Hotty.stream_call("https://graph.org/file/e999c40cb700e7c684b75.mp4")
+        await pisces.stream_call("https://graph.org/file/e999c40cb700e7c684b75.mp4")
     except NoActiveGroupCall:
         LOGGER("maythusharmusic").error(
             "Please turn on the videochat of your log group\channel.\n\nStopping Bot..."
@@ -48,7 +48,7 @@ async def init():
         exit()
     except:
         pass
-    await Hotty.decorators()
+    await pisces.decorators()
     LOGGER("maythusharmusic").info(
         "Hey Baby"
     )
