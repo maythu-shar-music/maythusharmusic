@@ -5,17 +5,13 @@ from pyrogram import idle
 from pytgcalls.exceptions import NoActiveGroupCall
 
 import config
-from maythusharmusic import LOGGER, app, userbot, YouTube
-from maythusharmusic.core.call import pisces
+from maythusharmusic import LOGGER, app, userbot
+from maythusharmusic.core.call import Hotty
 from maythusharmusic.misc import sudo
 from maythusharmusic.plugins import ALL_MODULES
 from maythusharmusic.utils.database import get_banned_users, get_gbanned
 from config import BANNED_USERS
 
-# --- Clone Bot Function ကို Import လုပ်ခြင်း ---
-#from maythusharmusic.plugins.bot.clone import restart_clones 
-#from maythusharmusic.core.cleanmode import clean_mode_task
-# -------------------------------------------
 
 async def init():
     if (
@@ -42,19 +38,9 @@ async def init():
         importlib.import_module("maythusharmusic.plugins" + all_module)
     LOGGER("maythusharmusic.plugins").info("Successfully Imported Modules...")
     await userbot.start()
-    await pisces.start()
-    
-    # --- Clone Bot များကို စတင်ခြင်း ---
-    #LOGGER("maythusharmusic").info("Clone Bot များကို စတင်နေပါသည်...")
-    #try:
-        #await restart_clones()
-        #LOGGER("maythusharmusic").info("Clone Bots များ အောင်မြင်စွာ စတင်ပြီးပါပြီ။")
-    #except Exception as e:
-        #LOGGER("maythusharmusic").error(f"Clone Bots စတင်ရာတွင် အမှားရှိသည်: {e}")
-    # -------------------------------
-
+    await Hotty.start()
     try:
-        await pisces.stream_call("https://files.catbox.moe/y2cu6k.mp4")
+        await Hotty.stream_call("https://graph.org/file/e999c40cb700e7c684b75.mp4")
     except NoActiveGroupCall:
         LOGGER("maythusharmusic").error(
             "Please turn on the videochat of your log group\channel.\n\nStopping Bot..."
@@ -62,19 +48,14 @@ async def init():
         exit()
     except:
         pass
-    await pisces.decorators()
+    await Hotty.decorators()
     LOGGER("maythusharmusic").info(
-        "ᴅʀᴏᴘ ʏᴏᴜʀ ɢɪʀʟꜰʀɪᴇɴᴅ'ꜱ ɴᴜᴍʙᴇʀ ᴀᴛ @sasukevipmusicbotsupport..."
+        "Hey Baby"
     )
-    LOGGER("maythusharmusic").info(
-        "ᴅʀᴏᴘ ʏᴏᴜʀ ɢɪʀʟꜰʀɪᴇɴᴅ'ꜱ ɴᴜᴍʙᴇʀ ᴀᴛ @sasukevipmusicbotsupport ᴊᴏɪɴ @sasukevipmusicbot , @sasukevipmusicbotsupport ꜰᴏʀ ᴀɴʏ ɪꜱꜱᴜᴇꜱ"
-    )
-  #  LOGGER("maythusharmusic").info("Clean Mode စနစ်ကို စတင်နေပါသည်...")
-#    asyncio.create_task(clean_mode_task())
     await idle()
     await app.stop()
     await userbot.stop()
-    LOGGER("maythusharmusic").info("Stopping Sasuke Music Bot...")
+    LOGGER("maythusharmusic").info("Stopping Brandrd Music Bot...")
 
 
 if __name__ == "__main__":
